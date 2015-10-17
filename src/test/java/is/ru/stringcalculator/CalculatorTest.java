@@ -31,12 +31,28 @@ public class CalculatorTest {
     
     @Test
     public void testNewLines() {
-    	assertEquals(3+6+15, Calculator.add("3,6n15"));
+    	assertEquals(3+6+15, Calculator.add("3,6\n15"));
     }
 
     @Test
     public void testDifferentDelimeter() {
-    	assertEquals(3+6+15, Calculator.add("//;n3;6;15"));
+    	assertEquals(3+6+15, Calculator.add("//;\n3;6;15"));
     }
+
+    @Test(expected = RuntimeException.class)
+	public final void whenNegativeNumberIsUsedThenRuntimeExceptionIsThrown() {
+    	Calculator.add("3,-6,15,18,46,33");
+	}
+	
+	@Test
+	public final void whenNegativeNumbersAreUsedThenRuntimeExceptionIsThrown() {
+    	RuntimeException exception = null;
+    	try {
+        	Calculator.add("3,-6,15,-18,46,33");
+    	} catch (RuntimeException e) {
+        	exception = e;
+    	}
+    	assertEquals("Negatives not allowed: [-6, -18]", exception.getMessage());
+	}
 
 }
