@@ -34,4 +34,9 @@ public class CalculatorTest {
     	assertEquals(3+6+15, Calculator.add("3,6n15"));
     }
 
+    @Test
+    public void testDifferentDelimeter() {
+    	assertEquals(3+6+15, Calculator.add("//;n3;6;15"));
+    }
+
 }
