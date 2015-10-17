@@ -55,4 +55,10 @@ public class CalculatorTest {
     	assertEquals("Negatives not allowed: [-6, -18]", exception.getMessage());
 	}
 
+	@Test
+	public final void testLargeNumber() {
+	    assertEquals(3+1000+6, Calculator.add("3,1000,1001,6,1234"));
+	}	
+
+
 }
